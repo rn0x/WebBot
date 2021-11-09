@@ -43,5 +43,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ```
 
 <p align="center">
-  <img src="/github/1.jpg" alt="1" width="640" height="340">
+  <img src="/github/1.jpg" alt="1" width="340" height="640">
 </p>
