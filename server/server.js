@@ -20,15 +20,3 @@ export default function server(app) {
         console.log(error.toString());
     }
 }
-
-/* 
-
-let name = 'ryan'
-let msg = 'Hello'
-let user = fs.readJsonSync('./user.json')
-let db_user = { name: name , msg: msg }
-user.name = 'r2' 
-fs.writeJsonSync('./user.json', user);
-
-
-*/
