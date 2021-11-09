@@ -1,0 +1,15 @@
+doctype html
+html(lang="ar")
+  head
+    title= title
+    block scripts
+      script(src='./load.js')
+    link(rel="stylesheet", href="./css/style.css")
+  body
+    div.load#load
+    div.hedr
+      img(src="./icon/logo.png", alt=title  id='logo')
+      .icons_home
+        a(href= web_photo): img(src="./icon/image.png", alt="info" id='icon-info')
+        a(href= web_video): img(src="./icon/video.png", alt="info" id='icon-info')
+        a(href= web_home): img(src="./icon/home.png", alt="info" id='icon-info')

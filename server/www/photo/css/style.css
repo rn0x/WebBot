@@ -1,0 +1,194 @@
+
+
+.footer {
+
+  text-align: center;
+  margin: 100px 10px 50px 10px;
+}
+
+.hedr {
+  text-align: center;
+  padding:0;
+  margin: 0;
+}
+
+.gallery {
+
+  display: block;
+}
+
+
+
+.gallery img {
+
+  margin: 80px 20px 20px 20px;
+  max-width: 80%;
+  height: auto;
+  border-radius: 5%;
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.062);
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  
+}
+
+.gallery img:hover {
+
+  opacity: 80%;
+  
+}
+
+.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.responsive {
+  
+  margin: 100px 100px 100px 100px;
+  display: block;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.034);
+  background-color: #ffffff; 
+  border-left: 15px solid #e7f3fe; 
+  
+}
+.responsive:hover{
+  
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.068);
+}
+
+
+body{
+
+  text-align: center;
+  word-break: break-all;
+  padding:0;
+  margin: 0;
+  position: relative;
+}
+
+.load{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  z-index:9999;
+  background:url("../icon/loding.gif") no-repeat center center rgb(255, 255, 255);
+  opacity: 95%;
+}
+
+h1 {
+  margin:0;
+  padding:0;
+}
+
+#icon-download {
+
+  max-width: 55px;
+  width: 55px;
+  height: 55px; 
+  box-shadow:none;
+}
+
+.info-col {
+
+  border-right: 8px solid #2196F3; 
+  border-width: 5px;
+  
+}
+
+
+.info{
+
+  display:block;
+  text-align: center;
+  margin: 0px 15px 0px 15px;
+  color: black;
+  
+}
+
+.info a {
+
+  text-decoration: none;
+  margin: 0px 15px 0px 15px;
+  
+}
+.info img {
+
+  max-width: 35px;
+  width: 35px;
+  height: 35px; 
+  margin: 0px 15px 0px 15px;
+  box-shadow:none;
+  
+}
+
+.icons_home img {
+
+  margin: 50px 50px 50px 50px;
+  max-width: 40px;
+  width: 40px;
+  height: 40px; 
+  cursor:pointer
+}
+
+.icons_home img:hover {
+
+  opacity: 80%;
+  
+}
+
+#icon {
+
+  max-width: 40px;
+  width: 40px;
+  height: 40px;
+  
+}
+
+
+
+img {
+
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#logo {
+
+  margin: 80px 50px 50px 50px;
+  max-width: 50%;
+  height: auto;
+  
+}
+
+#logo-foter{
+
+  max-width: 4%;
+  height: auto;
+}
+
+a{
+  
+  text-decoration: none;
+  font-size:100%;
+  color: black
+}
+
+
+@media only screen and (min-width: 768px) {
+
+  .info{
+
+    display:inline-flex;
+    text-align: center;
+    margin: 0px 15px 0px 15px;
+    color: black;
+
+  }
+
+}

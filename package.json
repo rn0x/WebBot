@@ -1,0 +1,24 @@
+{
+  "name": "rn0x",
+  "version": "1.0.0",
+  "description": "bot website telegram",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "figlet": "^1.5.2",
+    "fs-extra": "^10.0.0",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "input": "^1.0.1",
+    "moment-timezone": "^0.5.33",
+    "pug": "^3.0.2",
+    "telegram": "^1.9.6"
+  }
+}
