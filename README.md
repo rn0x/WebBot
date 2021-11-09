@@ -41,3 +41,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
    > npm i
    > npm start
 ```
+
+<p align="center">
+  <img src="/github/1.jpg" alt="1" width="640" height="340">
+</p>
