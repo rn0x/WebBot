@@ -8,8 +8,7 @@ import input from "input";
 
 console.log(figlet.textSync('Bot WebSite'));
 console.log("                  Start " + moment.tz("Asia/Riyadh").format('LT'))
-console.log("               Telegram @BinAttia ")
-
+console.log("               Telegram @BinAttia \n\n")
 
 if (fs.existsSync('./config.json') === false ){
 
@@ -19,6 +18,18 @@ if (fs.existsSync('./config.json') === false ){
     fs.writeJsonSync('./config.json', {domain: Domain , title: name});
   
 }
+
+else if (fs.existsSync('./config.json')){
+
+    let config = fs.readJsonSync('./config.json');
+
+    console.log(`Website Link LocalHost https://localhost or http://localhost`);
+    console.log(`Website Link Domain https://${config.domain} or http://${config.domain}`);
+
+}
+
+
+
 
 website()
 tel()
