@@ -19,17 +19,5 @@ if (fs.existsSync('./config.json') === false ){
   
 }
 
-else if (fs.existsSync('./config.json')){
-
-    let config = fs.readJsonSync('./config.json');
-
-    console.log(`Website Link LocalHost https://localhost or http://localhost`);
-    console.log(`Website Link Domain https://${config.domain} or http://${config.domain}`);
-
-}
-
-
-
-
 website()
 tel()
