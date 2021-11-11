@@ -72,11 +72,18 @@ export default async function Telegram() {
     
             const msg = event.message;
             const sender = await msg.getSender();
+            const dialogs_client = await client.getDialogs({})
+            const dialogs = dialogs_client[0];
             const message = msg.message
             const message_id = msg.id
             const replyTo = msg.replyTo !== null // msg.replyTo.replyToMsgId = message_id reply
             const from_id = msg.fromId !== null ? msg.fromId.userId : msg.peerId.userId ? msg.peerId.userId : msg.peerId.channelId
-            const chat_id = msg.peerId.channelId ? msg.peerId.channelId : msg.peerId.userId
+           // const chat_id = msg.peerId.channelId ? msg.peerId.channelId : msg.peerId.userId
+            const chat_id = dialogs.id
+            const member_group = event._entities.get(Array.from(event._entities.keys())[0]) !== undefined ? event._entities.get(Array.from(event._entities.keys())[0]) : ''
+            const member_username = member_group.username !== undefined ? member_group.username : '' ;
+            const member_firstName = member_group.firstName !== undefined ? member_group.firstName : '' ;
+            const member_id = member_group.id !== undefined ? member_group.id : '' ;
             const photo = msg.photo
             const video = msg.video
             const firstName = sender.firstName ? sender.firstName : event._entities.get(Array.from(event._entities.keys())[1]).title
@@ -85,6 +92,8 @@ export default async function Telegram() {
             const buffer_video = await client.downloadMedia(video,{ workers: 1 }) 
             const config = fs.readJsonSync('./config.json');
 
+           // chat_id.toString().includes("-") === false
+
             if (message !== '' && photo) { 
 
                 let Time = moment.tz("Asia/Riyadh").format()
@@ -92,9 +101,9 @@ export default async function Telegram() {
                 let fileName = NumberMx(25) ;
                 let json_user = {
 
-                    User: username,
-                    FirstName: firstName,
-                    From_Id: from_id,
+                    User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
+                    FirstName: member_firstName !== '' && member_firstName !== 'Channel' ? member_firstName : firstName,
+                    From_Id: member_id !== '' && member_username !== 'Channel_Bot' ? member_id : from_id,
                     Chat_Id: chat_id,
                     Message_Id: message_id,
                     Message: message ,
@@ -117,9 +126,9 @@ export default async function Telegram() {
                 let fileName = NumberMx(25) ;
                 let json_user = {
 
-                    User: username,
-                    FirstName: firstName,
-                    From_Id: from_id,
+                    User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
+                    FirstName: member_firstName !== '' && member_firstName !== 'Channel' ? member_firstName : firstName,
+                    From_Id: member_id !== '' && member_username !== 'Channel_Bot' ? member_id : from_id,
                     Chat_Id: chat_id,
                     Message: ' ' ,
                     Message_Id: message_id,
@@ -143,9 +152,9 @@ export default async function Telegram() {
                 let fileName = NumberMx(25) ;
                 let json_user = {
 
-                    User: username,
-                    FirstName: firstName,
-                    From_Id: from_id,
+                    User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
+                    FirstName: member_firstName !== '' && member_firstName !== 'Channel' ? member_firstName : firstName,
+                    From_Id: member_id !== '' && member_username !== 'Channel_Bot' ? member_id : from_id,
                     Chat_Id: chat_id,
                     Message: message,
                     Message_Id: message_id,
@@ -169,9 +178,9 @@ export default async function Telegram() {
                 let fileName = NumberMx(25) ;
                 let json_user = {
 
-                    User: username,
-                    FirstName: firstName,
-                    From_Id: from_id,
+                    User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
+                    FirstName: member_firstName !== '' && member_firstName !== 'Channel' ? member_firstName : firstName,
+                    From_Id: member_id !== '' && member_username !== 'Channel_Bot' ? member_id : from_id,
                     Chat_Id: chat_id,
                     Message: ' ' ,
                     Message_Id: message_id,
