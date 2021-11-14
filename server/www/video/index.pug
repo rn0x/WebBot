@@ -3,16 +3,16 @@ html(lang="ar")
   head
     title= title
     block scripts
-      script(src='./load.js')
-    link(rel="stylesheet", href="./css/style.css")
+      script(src='../load.js')
+    link(rel="stylesheet", href="../css/style.css")
   body
     div.load#load
     div.hedr
       img(src="../icon/logo.png", alt=title  id='logo')
       .icons_home
-        a(href= web_photo): img(src="./icon/image.png", alt="info" id='icon-info')
-        a(href= web_video): img(src="./icon/video.png", alt="info" id='icon-info')
-        a(href= web_home): img(src="./icon/home.png", alt="info" id='icon-info')
+        a(href= web_photo): img(src="../icon/image.png", alt="info" id='icon-info')
+        a(href= web_video): img(src="../icon/video.png", alt="info" id='icon-info')
+        a(href= web_home): img(src="../icon/home.png", alt="info" id='icon-info')
     .bodyimg
     each lop in json_db
       .responsive
@@ -22,14 +22,14 @@ html(lang="ar")
           .desc 
             p= lop.Message !== ' ' ? lop.Message : ' ' 
           br
-          a(href=`media/${lop.FileName}.mp4` download= `${lop.FileName}`): img(src="./icon/download.png", alt="info" id='icon-download')
+          a(href=`media/${lop.FileName}.mp4` download= `${lop.FileName}`): img(src="../icon/download.png", alt="info" id='icon-download')
           br
           .info-col
             .info
               a(href=`https://t.me/${lop.User}` target="_blank"): p= lop.FirstName
-              img(src="./icon/telegram.png", alt="id" id='icon')
+              img(src="../icon/telegram.png", alt="id" id='icon')
               p= lop.From_Id
-              img(src="./icon/id.png", alt="id" id='icon')
+              img(src="../icon/id.png", alt="id" id='icon')
               br
     .footer
       a(href="https://github.com/rn0x" target="_blank"): h4 Github: @rn0x 

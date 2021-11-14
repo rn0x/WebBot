@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import { TelegramClient } from "telegram";
-import { StringSession } from "telegram/sessions/index.js";
+import { StoreSession } from "telegram/sessions/index.js";
 import { NewMessage } from "telegram/events/index.js";
 import input from "input";
 import moment from 'moment-timezone';
@@ -24,12 +24,6 @@ export default async function Telegram() {
             fs.writeJsonSync('./Telegram/db/api.json', {api_id: Number(apiid) , api_hash: apihash});
           
         }
-          
-        if (fs.existsSync('./Telegram/db/session.json') === false ){
-          
-            fs.writeJsonSync("./Telegram/db/session.json", "");
-          
-        }
 
         if (fs.existsSync('./Telegram/db/photo.json') === false ){
           
@@ -44,11 +38,10 @@ export default async function Telegram() {
         }
 
         const jsonapi = await fs.readJson('./Telegram/db/api.json').catch(() => console.log("The api.json file has been created"));
-        const save_session =  await fs.readJson("./Telegram/db/session.json").catch(() => console.log("The swssion.json file has been created"));
         const apiId = jsonapi.api_id;
         const apiHash = jsonapi.api_hash;
-        const stringSession = new StringSession(save_session);
-        const client = new TelegramClient(stringSession, apiId, apiHash);
+        const storesession = new StoreSession(session);
+        const client = new TelegramClient(storesession, apiId, apiHash);
         await client.connect();
 
         if (!await client.checkAuthorization()) {
@@ -63,9 +56,6 @@ export default async function Telegram() {
             });
       
         }
-          
-        fs.writeJsonSync('./Telegram/db/session.json', client.session.save());
-
 
         async function eventPrint(event) {
 
@@ -80,14 +70,14 @@ export default async function Telegram() {
             const from_id = msg.fromId !== null ? msg.fromId.userId : msg.peerId.userId ? msg.peerId.userId : msg.peerId.channelId
            // const chat_id = msg.peerId.channelId ? msg.peerId.channelId : msg.peerId.userId
             const chat_id = dialogs.id
-            const member_group = event._entities.get(Array.from(event._entities.keys())[0]) !== undefined ? event._entities.get(Array.from(event._entities.keys())[0]) : ''
-            const member_username = member_group.username !== undefined ? member_group.username : '' ;
-            const member_firstName = member_group.firstName !== undefined ? member_group.firstName : '' ;
+            const member_group = event._entities.get(Array.from(event._entities.keys())[0]) !== undefined && event._entities.get(Array.from(event._entities.keys())[0]) !== null ? event._entities.get(Array.from(event._entities.keys())[0]) : ''
+            const member_username = member_group.username !== undefined && member_group.username !== null ? member_group.username : '' ;
+            const member_firstName = member_group.firstName !== undefined && member_group.firstName !== null ? member_group.firstName : '' ;
             const member_id = member_group.id !== undefined ? member_group.id : '' ;
             const photo = msg.photo
             const video = msg.video
             const firstName = sender.firstName ? sender.firstName : event._entities.get(Array.from(event._entities.keys())[1]).title
-            const username = msg.peerId.channelId && event._entities.get(Array.from(event._entities.keys())[1]).username !== undefined ? event._entities.get(Array.from(event._entities.keys())[1]).username : sender.username !== null ? sender.username : firstName
+            const username = msg.peerId.channelId && event._entities.get(Array.from(event._entities.keys())[1]).username !== undefined && event._entities.get(Array.from(event._entities.keys())[1]).username !== null ? event._entities.get(Array.from(event._entities.keys())[1]).username : sender.username !== null ? sender.username : firstName
             const buffer_photo = await client.downloadMedia(photo,{ workers: 1 })
             const buffer_video = await client.downloadMedia(video,{ workers: 1 }) 
             const config = fs.readJsonSync('./config.json');

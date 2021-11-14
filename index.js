@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import website from './server/website.js';
+import folder from './server/folder.js';
 import tel from './Telegram/index.js';
 import moment from 'moment-timezone';
 import figlet from 'figlet';
@@ -19,5 +20,6 @@ if (fs.existsSync('./config.json') === false ){
   
 }
 
+folder()
 website()
 tel()

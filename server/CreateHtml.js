@@ -1,11 +1,12 @@
 import fs from 'fs-extra';
 
-export async function CreateHtmlPhoto(message, FileName, User, FirstName, fromid) {
+export async function CreateHtmlPhoto(Message, FileName, User, FirstName, From_Id) {
 
     try {
 
 
-       // let replace = message.replace(/ /g, '_')
+        let replace = Message.replace(/ /g, '_').split("\n")
+        let replace_msg = Message !== ' ' ? Message.replace(/(?:\r\n|\r|\n)/g, '\n            p ') : ''
         let config = fs.readJsonSync('./config.json')
         let Options = {
 
@@ -14,70 +15,44 @@ export async function CreateHtmlPhoto(message, FileName, User, FirstName, fromid
             web_photo: `https://${config.domain}/photo`,
             web_video: `https://${config.domain}/video`
         }
-        const code = `
+        let code = `
+doctype html
+html(lang="ar")
+  head
+    title= '${replace} - ${Options.title}'
+    block scripts
+      script(src='./load.js')
+    link(rel="stylesheet", href="./css/style.css")
+  body
+    div.load#load
+    div.hedr
+      img(src="../icon/logo.png", alt=title  id='logo')
+      .icons_home
+        a(href= '${Options.web_photo}'): img(src="./icon/image.png", alt="info" id='icon-info')
+        a(href= '${Options.web_video}'): img(src="./icon/video.png", alt="info" id='icon-info')
+        a(href= '${Options.web_home}'): img(src="./icon/home.png", alt="info" id='icon-info')
+    .bodyimg
+      .responsive
+        .gallery
+          img(src='./photo/media/${FileName}.jpeg', alt='${replace !== ' ' ? replace : ' '}')
+          .desc 
+            p ${replace_msg}
+          br
+          a(href='./photo/media/${FileName}.jpeg' download= '${FileName}'): img(src="./icon/download.png", alt="info" id='icon-download')
+          br
+          .info-col
+            .info
+              a(href='https://t.me/${User}' target="_blank"): p= '${FirstName}'
+              img(src="./icon/telegram.png", alt="id" id='icon')
+              p= '${From_Id}'
+              img(src="./icon/id.png", alt="id" id='icon')
+              br
+    .footer
+      a(href="https://github.com/rn0x" target="_blank")
+        h4 Github: @rn0x 
+      img(src="../icon/logo.png", alt= message id='logo-foter')`
 
-        <!DOCTYPE html>
-<html lang="ar">
-<head>
-    <title>${message} - ${Options.title}</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="../load.js"></script>
-</head>
-<body>
-    <div class="load" id="load"></div>
-    <div class="hedr">
-        <img src="../icon/logo.png", alt='title'  id='logo'>
-        <div class="icons_home">
-            <a href=${Options.web_photo}>
-                <img src="../icon/image.png" alt="image" id="icon-info">
-            </a>
-            <a href=${Options.web_video}>
-                <img src="../icon/video.png" alt="image" id="icon-info">
-            </a>
-            <a href=${Options.web_home}>
-                <img src="../icon/home.png" alt="image" id="icon-info">
-            </a>
-        </div>
-    </div>
-    <div class="bodyimg">
-        <div class="responsive">
-            <div class="gallery">
-                <img src='../media/${FileName}.jpeg' alt="${message}">
-            </div>
-            <div class="desc">
-                <p> ${message} </p>
-            </div>
-            <br>
-            <a href="${Options.web_photo}/media/${FileName}.jpeg" download= '${FileName}'>
-                <img src="../icon/download.png" alt="download" id='icon-download'>
-            </a>
-            <br>
-            <div class="info-col">
-                <div class="info">
-                    <a href='https://t.me/${User}' target="_blank">
-                    <p> ${FirstName} </p>
-                    </a>
-                    <img src="../icon/telegram.png" alt="telegram" id='icon'>
-                    <p>${fromid}</p>
-                    <img src="../icon/id.png" alt="id" id='icon'>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <a href="https://github.com/rn0x" target="_blank">
-            <h4> Github: @rn0x  </h4>
-        </a>
-        <img src="../icon/logo.png", alt= 'logo' id='logo-foter'>
-    </div>
-    
-</body>
-</html>
-        
-        `
-
-        fs.writeFileSync(`./server/www/photo/html/${FileName}.html`, code);
+        fs.writeFileSync(`./server/www/photo/html/${FileName}.pug`, code);
 
     } catch(error) {
 
@@ -87,12 +62,13 @@ export async function CreateHtmlPhoto(message, FileName, User, FirstName, fromid
 }
 
 
-export async function CreateHtmlVideo(message, FileName, User, FirstName, fromid) {
+export async function CreateHtmlVideo(Message, FileName, User, FirstName, From_Id) {
 
     try {
 
 
-        //let replace = message.replace(/ /g, '_')
+        let replace = Message.replace(/ /g, '_').split("\n")
+        let replace_msg = Message !== ' ' ? Message.replace(/(?:\r\n|\r|\n)/g, '\n            p ') : ''
         let config = fs.readJsonSync('./config.json')
         let Options = {
 
@@ -101,68 +77,42 @@ export async function CreateHtmlVideo(message, FileName, User, FirstName, fromid
             web_photo: `https://${config.domain}/photo`,
             web_video: `https://${config.domain}/video`
         }
-        const code = `
-
-        <!DOCTYPE html>
-<html lang="ar">
-<head>
-    <title>${message} - ${Options.title}</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="../load.js"></script>
-</head>
-<body>
-    <div class="load" id="load"></div>
-    <div class="hedr">
-        <img src="../icon/logo.png", alt='title'  id='logo'>
-        <div class="icons_home">
-            <a href=${Options.web_photo}>
-                <img src="../icon/image.png" alt="image" id="icon-info">
-            </a>
-            <a href=${Options.web_video}>
-                <img src="../icon/video.png" alt="image" id="icon-info">
-            </a>
-            <a href=${Options.web_home}>
-                <img src="../icon/home.png" alt="image" id="icon-info">
-            </a>
-        </div>
-    </div>
-    <div class="bodyimg">
-        <div class="responsive">
-            <div class="gallery">
-                <video src='../media/${FileName}.mp4' controls></video>
-            </div>
-            <div class="desc">
-                <p> ${message} </p>
-            </div>
-            <br>
-            <a href="${Options.web_video}/media/${FileName}.mp4" download= '${FileName}'>
-                <img src="../icon/download.png" alt="download" id='icon-download'>
-            </a>
-            <br>
-            <div class="info-col">
-                <div class="info">
-                    <a href='https://t.me/${User}' target="_blank">
-                    <p> ${FirstName} </p>
-                    </a>
-                    <img src="../icon/telegram.png" alt="telegram" id='icon'>
-                    <p>${fromid}</p>
-                    <img src="../icon/id.png" alt="id" id='icon'>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <a href="https://github.com/rn0x" target="_blank">
-            <h4> Github: @rn0x  </h4>
-        </a>
-        <img src="../icon/logo.png", alt= 'logo' id='logo-foter'>
-    </div>
-    
-</body>
-</html>
-        
-        `
+        let code = `
+doctype html
+html(lang="ar")
+  head
+    title= '${replace} - ${Options.title}'
+    block scripts
+      script(src='./load.js')
+    link(rel="stylesheet", href="./css/style.css")
+  body
+    div.load#load
+    div.hedr
+      img(src="../icon/logo.png", alt=title  id='logo')
+      .icons_home
+        a(href= '${Options.web_photo}'): img(src="./icon/image.png", alt="info" id='icon-info')
+        a(href= '${Options.web_video}'): img(src="./icon/video.png", alt="info" id='icon-info')
+        a(href= '${Options.web_home}'): img(src="./icon/home.png", alt="info" id='icon-info')
+    .bodyimg
+      .responsive
+        .gallery
+          video(src='./video/media/${FileName}.mp4' controls)
+          .desc 
+            p ${replace_msg}
+          br
+          a(href='./video/media/${FileName}.mp4' download= '${FileName}'): img(src="./icon/download.png", alt="info" id='icon-download')
+          br
+          .info-col
+            .info
+              a(href='https://t.me/${User}' target="_blank"): p= '${FirstName}'
+              img(src="./icon/telegram.png", alt="id" id='icon')
+              p= '${From_Id}'
+              img(src="./icon/id.png", alt="id" id='icon')
+              br
+    .footer
+      a(href="https://github.com/rn0x" target="_blank")
+        h4 Github: @rn0x 
+      img(src="../icon/logo.png", alt= message id='logo-foter')`
 
         fs.writeFileSync(`./server/www/video/html/${FileName}.html`, code);
 
