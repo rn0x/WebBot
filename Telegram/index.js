@@ -40,7 +40,7 @@ export default async function Telegram() {
         const jsonapi = await fs.readJson('./Telegram/db/api.json').catch(() => console.log("The api.json file has been created"));
         const apiId = jsonapi.api_id;
         const apiHash = jsonapi.api_hash;
-        const storesession = new StoreSession(session);
+        const storesession = new StoreSession('session');
         const client = new TelegramClient(storesession, apiId, apiHash);
         await client.connect();
 
