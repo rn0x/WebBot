@@ -59,6 +59,7 @@ export default async function Whatsapp() {
 
             if (msg.messages && msg.count && msg.hasNewMessage && client.contacts[msg.jid] !== undefined) {
 
+                let config = fs.readJsonSync('./config.json');
                 let variables = {
     
                     messages: msg.messages.array[0].message,
@@ -88,6 +89,7 @@ export default async function Whatsapp() {
                     fs.writeJsonSync('./Whatsapp/db/media.json', json_photo)
                     fs.writeFileSync(`./server/www/Whatsapp/media/${fileName}.jpeg`, file);
                     CreateHtmlPhoto_WH(json_user.Message, json_user.FileName, json_user.From_Id, json_user.FirstName, Time)
+                    await client.sendMessage(variables.from, `تم رفع الصوره على الموقع \n\n https://${config.domain}/whatsapp/${fileName}`, MessageType.text)
                     
                 }
 
@@ -111,6 +113,7 @@ export default async function Whatsapp() {
                     fs.writeJsonSync('./Whatsapp/db/media.json', json_photo)
                     fs.writeFileSync(`./server/www/Whatsapp/media/${fileName}.mp4`, file);
                     CreateHtmlVideo_WH(json_user.Message, json_user.FileName, json_user.From_Id, json_user.FirstName, Time)
+                    await client.sendMessage(variables.from, `تم رفع الصوره على الموقع \n\n https://${config.domain}/whatsapp/${fileName}`, MessageType.text)
                     
                 }
 
