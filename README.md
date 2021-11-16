@@ -53,12 +53,12 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ```
 
 <div align="center" style="display:block;width:200px;">
-    <img src="/github/1.jpeg" alt="WebBot" style="display:block;width:400px;">
+    <img src="/github/1.jpg" alt="WebBot" style="display:block;width:400px;">
     <br>
     <img src="/github/2.jpeg" alt="WebBot" style="display:block;width:400px;">
     <br>
-    <img src="/github/3.jpeg" alt="WebBot" style="display:block;width:400px;">
+    <img src="/github/3.jpg" alt="WebBot" style="display:block;width:400px;">
     <br>
-    <img src="/github/4.jpeg" alt="WebBot" style="display:block;width:400px;">
+    <img src="/github/4.jpg" alt="WebBot" style="display:block;width:400px;">
     <br>
 </div>
