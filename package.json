@@ -21,5 +21,28 @@
     "moment-timezone": "^0.5.33",
     "pug": "^3.0.2",
     "telegram": "^1.9.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rn0x/WebBot.git"
+  },
+  "keywords": [
+    "bot",
+    "bot_Telegram",
+    "telegram",
+    "website",
+    "websitebot",
+    "WebBot",
+    "موقع بوت",
+    "بوت",
+    "بوت واتساب",
+    "WhatsApp",
+    "WhatsApp Bot",
+    "WhatsApp Bot Web site",
+    "Telegram Bot Web site"
+  ],
+  "bugs": {
+    "url": "https://github.com/rn0x/WebBot/issues"
+  },
+  "homepage": "https://github.com/rn0x/WebBot#readme"
 }
