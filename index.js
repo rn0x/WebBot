@@ -21,7 +21,8 @@ if (fs.existsSync('./config.json') === false ){
   
 }
 
-folder()
-website()
-Whatsapp()
-Telegram()
+await folder()
+await Telegram()
+await website()
+await Whatsapp()
+await Telegram()
