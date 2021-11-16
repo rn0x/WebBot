@@ -3,17 +3,27 @@ import fs from 'fs-extra';
 
 export default function folder() {
 
-    if (fs.existsSync('./server/www/photo/media') === false || fs.existsSync('./server/www/photo/html') === false ){
+    if (fs.existsSync('./server/www/Telegram/media') === false){
 
-        fs.mkdirSync('./server/www/photo/media', { recursive: true });
-        fs.mkdirSync('./server/www/photo/html', { recursive: true });
+        fs.mkdirSync('./server/www/Telegram/media', { recursive: true });
       
     }
 
-    if (fs.existsSync('./server/www/video/media') === false || fs.existsSync('./server/www/video/html') === false ){
+    if (fs.existsSync('./server/www/Telegram/html') === false){
 
-        fs.mkdirSync('./server/www/video/media', { recursive: true });
-        fs.mkdirSync('./server/www/video/html', { recursive: true });
+        fs.mkdirSync('./server/www/Telegram/html', { recursive: true });
+      
+    }
+
+    if (fs.existsSync('./server/www/Whatsapp/media') === false){
+
+        fs.mkdirSync('./server/www/Whatsapp/media', { recursive: true });
+      
+    }
+
+    if (fs.existsSync('./server/www/Whatsapp/html') === false){
+
+        fs.mkdirSync('./server/www/Whatsapp/html', { recursive: true });
       
     }
     

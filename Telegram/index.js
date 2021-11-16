@@ -4,7 +4,7 @@ import { StoreSession } from "telegram/sessions/index.js";
 import { NewMessage } from "telegram/events/index.js";
 import input from "input";
 import moment from 'moment-timezone';
-import { CreateHtmlPhoto, CreateHtmlVideo } from '../server/CreateHtml.js'
+import { CreateHtmlPhoto_TG, CreateHtmlVideo_TG } from '../server/CreateHtml.js'
 
 export default async function Telegram() {
 
@@ -25,15 +25,9 @@ export default async function Telegram() {
           
         }
 
-        if (fs.existsSync('./Telegram/db/photo.json') === false ){
+        if (fs.existsSync('./Telegram/db/media.json') === false ){
           
-            fs.writeJsonSync("./Telegram/db/photo.json", []);
-          
-        }
-
-        if (fs.existsSync('./Telegram/db/video.json') === false ){
-          
-            fs.writeJsonSync("./Telegram/db/video.json", []);
+            fs.writeJsonSync("./Telegram/db/media.json", []);
           
         }
 
@@ -86,9 +80,9 @@ export default async function Telegram() {
 
             if (message !== '' && photo) { 
 
-                let Time = moment.tz("Asia/Riyadh").format()
-                let json_photo = fs.readJsonSync('./Telegram/db/photo.json')
-                let fileName = NumberMx(25) ;
+                let Time = moment.tz("Asia/Riyadh").locale('ar').format('LLLL')
+                let json_photo = fs.readJsonSync('./Telegram/db/media.json')
+                let fileName = NumberMx(35) ;
                 let json_user = {
 
                     User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
@@ -98,22 +92,23 @@ export default async function Telegram() {
                     Message_Id: message_id,
                     Message: message ,
                     FileName: fileName,
-                    Time: Time 
+                    Time: Time,
+                    Format: "photo"
                 };
 
                 json_photo.unshift(json_user)
-                fs.writeJsonSync('./Telegram/db/photo.json', json_photo)
-                fs.writeFileSync(`./server/www/photo/media/${fileName}.jpeg`, buffer_photo);
-                CreateHtmlPhoto(message, fileName, username, firstName, from_id);
-                await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/photo/html/${fileName}.html`, replyTo: message_id})
-                .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
+                fs.writeJsonSync('./Telegram/db/media.json', json_photo)
+                fs.writeFileSync(`./server/www/telegram/media/${fileName}.jpeg`, buffer_photo);
+                CreateHtmlPhoto_TG(message, fileName, username, from_id, firstName, Time);
+                // await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
             }
             
             else if (message === '' && photo) {
 
-                let Time = moment.tz("Asia/Riyadh").format()
-                let json_photo = fs.readJsonSync('./Telegram/db/photo.json')
-                let fileName = NumberMx(25) ;
+                let Time = moment.tz("Asia/Riyadh").locale('ar').format('LLLL')
+                let json_photo = fs.readJsonSync('./Telegram/db/media.json')
+                let fileName = NumberMx(35) ;
                 let json_user = {
 
                     User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
@@ -123,23 +118,24 @@ export default async function Telegram() {
                     Message: ' ' ,
                     Message_Id: message_id,
                     FileName: fileName,
-                    Time: Time
+                    Time: Time,
+                    Format: "photo"
                 };
 
                 json_photo.unshift(json_user)
-                fs.writeJsonSync('./Telegram/db/photo.json', json_photo)
-                fs.writeFileSync(`./server/www/photo/media/${fileName}.jpeg`, buffer_photo);
-                CreateHtmlPhoto(message, fileName, username, firstName, from_id);
-                await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/photo/html/${fileName}.html`, replyTo: message_id})
-                .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
+                fs.writeJsonSync('./Telegram/db/media.json', json_photo)
+                fs.writeFileSync(`./server/www/telegram/media/${fileName}.jpeg`, buffer_photo);
+                CreateHtmlPhoto_TG(message, fileName, username, from_id, firstName, Time);
+                // await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
 
             else if (message !== '' && video) {
 
-                let Time = moment.tz("Asia/Riyadh").format()
-                let json_video = fs.readJsonSync('./Telegram/db/video.json')
-                let fileName = NumberMx(25) ;
+                let Time = moment.tz("Asia/Riyadh").locale('ar').format('LLLL')
+                let json_video = fs.readJsonSync('./Telegram/db/media.json')
+                let fileName = NumberMx(35) ;
                 let json_user = {
 
                     User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
@@ -149,23 +145,24 @@ export default async function Telegram() {
                     Message: message,
                     Message_Id: message_id,
                     FileName: fileName,
-                    Time: Time
+                    Time: Time,
+                    Format: "video"
                 };
 
                 json_video.unshift(json_user)
-                fs.writeJsonSync('./Telegram/db/video.json', json_video)
-                fs.writeFileSync(`./server/www/video/media/${fileName}.mp4`, buffer_video);
-                CreateHtmlVideo(message, fileName, username, firstName, from_id)
-                await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/video/html/${fileName}.html`, replyTo: message_id})
-                .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
+                fs.writeJsonSync('./Telegram/db/media.json', json_video)
+                fs.writeFileSync(`./server/www/telegram/media/${fileName}.mp4`, buffer_video);
+                CreateHtmlVideo_TG(message, fileName, username, from_id, firstName, Time)
+                // await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
 
             else if (message === '' && video) {
 
-                let Time = moment.tz("Asia/Riyadh").format()
-                let json_video = fs.readJsonSync('./Telegram/db/video.json')
-                let fileName = NumberMx(25) ;
+                let Time = moment.tz("Asia/Riyadh").locale('ar').format('LLLL')
+                let json_video = fs.readJsonSync('./Telegram/db/media.json')
+                let fileName = NumberMx(35) ;
                 let json_user = {
 
                     User: member_username !== '' && member_username !== 'Channel_Bot' ? member_username : username,
@@ -175,15 +172,16 @@ export default async function Telegram() {
                     Message: ' ' ,
                     Message_Id: message_id,
                     FileName: fileName,
-                    Time: Time
+                    Time: Time,
+                    Format: "video"
                 };
 
                 json_video.unshift(json_user)
-                fs.writeJsonSync('./Telegram/db/video.json', json_video)
-                fs.writeFileSync(`./server/www/video/media/${fileName}.mp4`, buffer_video);
-                CreateHtmlVideo(message, fileName, username, firstName, from_id)
-                await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/video/html/${fileName}.html`, replyTo: message_id})
-                .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
+                fs.writeJsonSync('./Telegram/db/media.json', json_video)
+                fs.writeFileSync(`./server/www/telegram/media/${fileName}.mp4`, buffer_video);
+                CreateHtmlVideo_TG(message, fileName, username, from_id, firstName, Time)
+                // await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
             
