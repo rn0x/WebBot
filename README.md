@@ -1,8 +1,8 @@
 # WebBot 
 
 <div align="center" style="display:block;width:200px;">
-    <img src="/server/www/icone/telegram.png" alt=" logo" style="display:block;width:200px;">
-    <img src="/server/www/icone/whatsapp.png" alt=" logo" style="display:block;width:200px;">
+    <img src="/github/telegram.png" alt=" logo" style="display:block;width:200px;">
+    <img src="/github/whatsapp.png" alt=" logo" style="display:block;width:200px;">
     <br>
 </div>
 
