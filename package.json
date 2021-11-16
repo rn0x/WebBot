@@ -11,6 +11,7 @@
   "author": "",
   "license": "AGPL-3.0",
   "dependencies": {
+    "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "express": "^4.17.1",
     "figlet": "^1.5.2",
     "fs-extra": "^10.0.0",
