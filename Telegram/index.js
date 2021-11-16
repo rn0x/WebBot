@@ -100,7 +100,7 @@ export default async function Telegram() {
                 fs.writeJsonSync('./Telegram/db/media.json', json_photo)
                 fs.writeFileSync(`./server/www/telegram/media/${fileName}.jpeg`, buffer_photo);
                 CreateHtmlPhoto_TG(message, fileName, username, from_id, firstName, Time);
-                // await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
                 // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
             }
             
@@ -126,7 +126,7 @@ export default async function Telegram() {
                 fs.writeJsonSync('./Telegram/db/media.json', json_photo)
                 fs.writeFileSync(`./server/www/telegram/media/${fileName}.jpeg`, buffer_photo);
                 CreateHtmlPhoto_TG(message, fileName, username, from_id, firstName, Time);
-                // await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                await client.sendMessage(chat_id, {message: `تم رفع الصوره على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
                 // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
@@ -153,7 +153,7 @@ export default async function Telegram() {
                 fs.writeJsonSync('./Telegram/db/media.json', json_video)
                 fs.writeFileSync(`./server/www/telegram/media/${fileName}.mp4`, buffer_video);
                 CreateHtmlVideo_TG(message, fileName, username, from_id, firstName, Time)
-                // await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
                 // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
@@ -180,7 +180,7 @@ export default async function Telegram() {
                 fs.writeJsonSync('./Telegram/db/media.json', json_video)
                 fs.writeFileSync(`./server/www/telegram/media/${fileName}.mp4`, buffer_video);
                 CreateHtmlVideo_TG(message, fileName, username, from_id, firstName, Time)
-                // await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
+                await client.sendMessage(chat_id, {message: `تم رفع الفيديو على الموقع \n\n https://${config.domain}/telegram/${fileName}`, replyTo: message_id})
                 // .then(async (del) => setTimeout(async () => await client.deleteMessages(from_id, [del.id], { revoke: true}) , 10000))
 
             }
